@@ -1,0 +1,21 @@
+@import '../../_global.scss';
+
+.board-content{
+    display: flex;
+    margin : 0 $gap $gap;
+    overflow-x: auto;
+
+
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: #faf7f7; 
+    }
+     
+    &::-webkit-scrollbar-thumb {
+      background: #80a5ba; 
+      border-radius: 5px;
+    }
+}
