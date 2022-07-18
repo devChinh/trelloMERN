@@ -36,7 +36,8 @@ export const initialData = {
                        {id : 'card-8', boardId : 'board-1',columnId : 'column-2',title : 'Title of card 8',cover : null },
                        {id : 'card-9', boardId : 'board-1',columnId : 'column-2',title : 'Title of card 9',cover : null},
                     ]
-                 }
+                 },
+                 
             ],
 
          }
