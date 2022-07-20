@@ -6,14 +6,11 @@ import { Container, Draggable } from "react-smooth-dnd";
 
 function Column(props) {
 
-  const {column} = props
+  const {column , onCardDrop} = props
 
   // sắp xếp vị trí của các card trong 1 column trong array cardOrder
   const cards = mapOrder(column.cards , column.cardOrder , 'id')
 
-  const onCardDrop = (dropResultCard) => {
-    console.log('============= dropResultCard',dropResultCard)
-  }
 
   return (
     <div className="column">
@@ -22,7 +19,7 @@ function Column(props) {
       <Container
                     orientation="vertical"
                     groupName="col" // columns sẽ có chung class name để các card có thể di chuyển qua lại 
-                    onDrop={onCardDrop}
+                    onDrop={dropResult => onCardDrop(column.id , dropResult)}
                     getChildPayload={index => cards[index]} // lấy dữ liệu của phần tử drag 
                     dragClass="card-ghost"
                     dropClass="card-ghost-drop"
@@ -41,7 +38,15 @@ function Column(props) {
 
         </Container>
       </div>
-      <footer>Add another board</footer>
+
+      <footer>
+        <div className = "footer-actions">
+                <i className="fa fa-plus icon " />
+              Add another board
+              </div>
+      </footer>
+        
+        
     </div>
   )
 }
