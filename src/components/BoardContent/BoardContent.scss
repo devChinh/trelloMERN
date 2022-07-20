@@ -2,8 +2,8 @@
 
 .board-content{
     height: $board-content-height; // 91vh
-    // display: flex;
-    // margin : 0 $gap $gap;
+    display: flex;
+    margin : 0 $gap $gap;
     overflow-x: auto;
     overflow-y: hidden;
     &::-webkit-scrollbar {
@@ -17,6 +17,23 @@
     &::-webkit-scrollbar-thumb {
       background: #80a5ba; 
       border-radius: 5px;
+    }
+
+    .add-new-column{
+      background: hsla(0 , 0% , 100% , .24);
+      height: 32px;
+      line-height: 32px;
+      padding : 4px 0 4px 15px ; 
+      color:white;
+      cursor: pointer;
+      margin-left: $gap;
+      width: 240px;
+      font-size: 15px;
+      border-radius: $column-border-radius;
+
+      &:hover{
+        background: hsla(0 , 0% , 100% , .44);
+      }
     }
 
     .columns-drop-preview{

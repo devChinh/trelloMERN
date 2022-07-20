@@ -9,7 +9,7 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
     
     > * {
         background-color: $colorlist-bg;
-        color : #333;
+        color : #888;
         padding : 0 8px;
     }
     header.column-drag-handle{
@@ -33,6 +33,13 @@ $column-height: calc(#{$board-content-height} - #{$gap * 2});
         font-weight: bold;
         border-bottom-left-radius : $column-border-radius;
         border-bottom-right-radius : $column-border-radius;
+        .footer-actions{
+          margin-left: 5px;
+          cursor: pointer;
+          &:hover{
+            color : #333;
+          }
+        }
     }
 
     .card-list{

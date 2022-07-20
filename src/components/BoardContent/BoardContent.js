@@ -4,6 +4,7 @@ import './BoardContent.scss'
 import {initialData} from '../../actions/initialData'
 import {mapOrder} from '../../utillities/sorts'
 import {isEmpty} from 'lodash'
+import { applyDrag } from '../../utillities/dragDrop'
 
 import { Container, Draggable } from "react-smooth-dnd";
 
@@ -36,9 +37,36 @@ function BoardContent() {
   console.log('============= board',board)
   console.log('============= ',columns)
 
-  const onColumnDrop = (dropResult) => {
-    console.log('============= dropResult',dropResult)
+   const onColumnDrop = (dropResult) => {
+    // hàm applyDrag giúp thay thế các column với nhau 
+    let newColumns = [...columns]
+    newColumns = applyDrag(newColumns, dropResult)
+
+    // set lại columnsOrder khi columns thay đổi vị trí 
+    let newBoard = {...board}
+    newBoard.columnOrder = newColumns.map(c => c.id)
+    newBoard.columns = newColumns
+
+    console.log('============= newColumns',newColumns)
+    console.log('============= newBoard',newBoard)
+
+    setColumns(newColumns)
+    setBoard(newBoard)
   }
+
+  const onCardDrop = (columnId , dropResultCard) => {
+     if(dropResultCard.removedIndex !== null ||  dropResultCard.addedIndex !== null){
+      let newColumns = [...columns]
+
+      let currentColumn = newColumns.find(c => c.id === columnId)
+      currentColumn.cards = applyDrag(currentColumn.cards , dropResultCard)
+      currentColumn.cardOrder = currentColumn.cards.map(i => i.id)
+
+      setColumns(newColumns)
+  }}
+
+
+
 
   return (
     <div className="board-content">
@@ -55,11 +83,14 @@ function BoardContent() {
         >
           {columns.map((column, index) => ( // ngoặc nhọn thì phải có return 
             <Draggable key={index}>
-              <Column column ={column} />
+              <Column onCardDrop = {onCardDrop} column ={column} />
             </Draggable>
         ))}
         </Container>
-      {/* <Column /> */}
+       <div className="add-new-column">
+       <i className="fa fa-plus icon " />
+              Add another board
+       </div>
   </div>
   )
 }
