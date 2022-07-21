@@ -23,3 +23,16 @@ $screen-lg : 1201px;
 $screen-md : 992px;
 $screen-sm : 768px;
 $screen-phone : 480px;
+
+.fadeIn {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}

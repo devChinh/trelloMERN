@@ -21,13 +21,12 @@
 
     .add-new-column{
       background: hsla(0 , 0% , 100% , .24);
-      height: 32px;
       line-height: 32px;
       padding : 4px 0 4px 15px ; 
       color:white;
       cursor: pointer;
       margin-left: $gap;
-      width: 240px;
+      max-width: 250px;
       font-size: 15px;
       border-radius: $column-border-radius;
 
@@ -41,4 +40,65 @@
       border : 1px dashed #abcdef;
       // margin : 5px 45px 5px 5px ;
     }
+
+    .row {
+      width: 250px;
+      min-width: 250px;
+    }
+    
+    .enter-new-column{
+      color:white;
+      width: 250px;
+      padding : 4px 10px ; 
+      max-width: 250px;
+      margin-left: $gap;
+      border-radius: $column-border-radius;
+      line-height: 32px;
+      background: rgb(191, 191, 191);
+
+      .input-enter-new-column{
+        margin: 10px 0;
+      }
+      .cancel-new-column{
+        margin-left: 15px;
+        i{
+          font-size: 20px;
+          color: rgb(204, 132, 132);
+          &:hover {
+            color : red ;
+          }
+        }
+        &:hover{
+          cursor: pointer;
+        }
+      }
+    }
+
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: none ;
+  border-color: none !important;
+}
+
+.btn:focus , .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}}
+
+.hidden{
+  display: none !important ;
+}
+
+.show{
+  display: block !important;
 }
