@@ -22,3 +22,16 @@ body{
      }
 
 }
+
+.trello-content-editable{
+    background-color: inherit;
+    border : none !important;
+    font-size: inherit;
+    cursor: pointer;
+    font-weight: inherit;
+
+    &:focus{
+        background-color: white !important;
+        border : 1px solid border
+    }
+}
