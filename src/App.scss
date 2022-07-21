@@ -1,4 +1,5 @@
 @import './_global.scss';
+@import "~bootstrap/scss/bootstrap";
 
 body{
     margin : 0;
@@ -13,6 +14,11 @@ body{
     //  display: grid;
     //  grid-template-rows: 40px 50px 1fr; // có nghĩ là chia màn hình thành 3 dòng , dòng 1 cao 40px , dòng 2 cao 50px , dòng 3 chiếm 1 frame khung hình 
     //  line-height: 1.3em;
-    overflow : hidden;
      background-color: $board-bg-color;
+ 
+     .icon{
+        font-size: 14px;
+        margin-right: 3px;
+     }
+
 }
