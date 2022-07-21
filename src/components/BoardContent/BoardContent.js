@@ -49,10 +49,9 @@ const BoardContent = () => {
     return <div className="not-found">Board not found</div>;
   }
 
-  console.log("============= board", board);
-  console.log("============= ", columns);
 
   const onColumnDrop = (dropResult) => {
+    console.log('============= dropResult',dropResult)
     // hàm applyDrag giúp thay thế các column với nhau
     let newColumns = [...columns];
     newColumns = applyDrag(newColumns, dropResult);
@@ -61,9 +60,6 @@ const BoardContent = () => {
     let newBoard = { ...board };
     newBoard.columnOrder = newColumns.map((c) => c.id);
     newBoard.columns = newColumns;
-
-    console.log("============= newColumns", newColumns);
-    console.log("============= newBoard", newBoard);
 
     setColumns(newColumns);
     setBoard(newBoard);
@@ -84,7 +80,7 @@ const BoardContent = () => {
     }
   };
 
-  // check open 
+  // check open new column
   const toggleOpenNewColumnForm = () => {
         setOpenNewColumnForm(!openNewColumnForm)
   }
@@ -126,10 +122,35 @@ const BoardContent = () => {
    toggleOpenNewColumnForm(!openNewColumnForm)
   }
 
+  // enter input add 
    const handleEnter = (e) => {
      if(e.key === 'Enter') {
       addNewColumn()
      }
+   }
+
+   // edit title end remove column
+   const onUpdateColumn = (newColumnToUpdate) => {
+    const columnIdToUpdate = newColumnToUpdate.id
+
+    let newColumns = [...columns];
+
+    const columnIndexToUpdate = newColumns.findIndex(i  => i.id === columnIdToUpdate)
+
+    if(newColumnToUpdate._destroy){
+      newColumns.splice(columnIndexToUpdate, 1)
+    }else{
+      newColumns.splice(columnIndexToUpdate , 1 , newColumnToUpdate)
+    }
+
+ 
+    let newBoard = { ...board };
+   newBoard.columnOrder = newColumns.map((c) => c.id);
+   newBoard.columns = newColumns;
+
+   setColumns(newColumns);
+   setBoard(newBoard);
+
    }
 
   return (
@@ -137,7 +158,10 @@ const BoardContent = () => {
       <ColumnContainer // phần content đc bọc cả để gán các sự kiện cho drag
         orientation="horizontal"
         onDrop={onColumnDrop}
-        getChildPayload={(index) => columns[index]} // thể hiện thằng vừa kéo
+        getChildPayload={(index) => (
+          columns[index], //dropResult 
+          console.log('============= index',columns[index])
+        )} // thể hiện thằng vừa kéo
         dragHandleSelector=".column-drag-handle" // chỉ có phần có class là column-drag-handle mới có thể kéo thả đc
         dropPlaceholder={{
           // là một đường viền bao quanh ở chỗ đang kéo
@@ -152,14 +176,14 @@ const BoardContent = () => {
             index // ngoặc nhọn thì phải có return
           ) => (
             <Draggable key={index}>
-              <Column onCardDrop={onCardDrop} column={column} />
+              <Column onCardDrop={onCardDrop} onUpdateColumn={onUpdateColumn} column={column} />
             </Draggable>
           )
         )}
       </ColumnContainer>
-
+ 
+     {/* ADD COLUMN*/}
       <Container className="trello-add-container">
-
         {!openNewColumnForm && 
             <Row className="row">
               <Col onClick= {toggleOpenNewColumnForm} className="add-new-column">
@@ -189,6 +213,7 @@ const BoardContent = () => {
         </Row>
         }
       </Container>
+
     </div>
   )
 }
