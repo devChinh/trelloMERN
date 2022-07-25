@@ -21,7 +21,7 @@ export const initialData = {
                 title : ' column todo2', 
                 cardOrder : ['card-4' , 'card-5' , 'card-6'],
                   cards : [
-                     {id : 'card-4', boardId : 'board-1',columnId : 'column-2',title : 'Title of card 4',cover : null},
+                     {id : 'card-4', boardId : 'board-1',columnId : 'column-2',title : 'Title of card 4',cover : 'https://images.ctfassets.net/rz1oowkt5gyp/7pYWhpQ3vnntxoShaImNws/24181e476913df1dacc1690518ee54e7/trello_1_vi.png'},
                      {id : 'card-5', boardId : 'board-1',columnId : 'column-2',title : 'Title of card 5',cover : null },
                      {id : 'card-6', boardId : 'board-1',columnId : 'column-2',title : 'Title of card 6',cover : null },
                   ]

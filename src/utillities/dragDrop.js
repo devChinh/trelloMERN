@@ -1,6 +1,4 @@
 
-
-
 export const applyDrag = (arr, dragResult) => {
   console.log('============= arr',arr)
   console.log('============= dragResult',dragResult)
