@@ -90,7 +90,7 @@ const BoardContent = () => {
     setNewColumnTitle(e.target.value)
   }
 
-  // add button
+  // add new column 
   const addNewColumn = () => {
     if(!newColumnTitle){
       inputElement.current.focus()
@@ -109,11 +109,9 @@ const BoardContent = () => {
    newColumns.push(newColumnToAdd)
 
    let newBoard = { ...board };
+
    newBoard.columnOrder = newColumns.map((c) => c.id);
    newBoard.columns = newColumns;
-
-   console.log("============= newColumns", newColumns);
-   console.log("============= newBoard", newBoard);
 
    setColumns(newColumns);
    setBoard(newBoard);
@@ -136,16 +134,21 @@ const BoardContent = () => {
     let newColumns = [...columns];
 
     const columnIndexToUpdate = newColumns.findIndex(i  => i.id === columnIdToUpdate)
+    console.log('============= columnIndexToUpdate',columnIndexToUpdate)
 
     if(newColumnToUpdate._destroy){
+      // xoá 
       newColumns.splice(columnIndexToUpdate, 1)
     }else{
+      console.log('============= newColumnToUpdate',newColumnToUpdate)
+      // edit title 
       newColumns.splice(columnIndexToUpdate , 1 , newColumnToUpdate)
     }
 
- 
     let newBoard = { ...board };
+    // tìm và cập nhật lại columnOrder
    newBoard.columnOrder = newColumns.map((c) => c.id);
+   // gán lại columns
    newBoard.columns = newColumns;
 
    setColumns(newColumns);
@@ -153,14 +156,19 @@ const BoardContent = () => {
 
    }
 
+
+   // add cards 
+   const addNewCardToColumns = (newColumn) => {
+    
+   }
+   
   return (
     <div className="board-content">
       <ColumnContainer // phần content đc bọc cả để gán các sự kiện cho drag
         orientation="horizontal"
         onDrop={onColumnDrop}
         getChildPayload={(index) => (
-          columns[index], //dropResult 
-          console.log('============= index',columns[index])
+          columns[index] //dropResult 
         )} // thể hiện thằng vừa kéo
         dragHandleSelector=".column-drag-handle" // chỉ có phần có class là column-drag-handle mới có thể kéo thả đc
         dropPlaceholder={{
@@ -176,7 +184,13 @@ const BoardContent = () => {
             index // ngoặc nhọn thì phải có return
           ) => (
             <Draggable key={index}>
-              <Column onCardDrop={onCardDrop} onUpdateColumn={onUpdateColumn} column={column} />
+              <Column 
+              onCardDrop={onCardDrop} 
+              board={board} 
+              onUpdateColumn={onUpdateColumn} 
+              column={column}  
+              addNewCardToColumns ={addNewCardToColumns}
+              />
             </Draggable>
           )
         )}

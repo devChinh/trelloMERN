@@ -5,6 +5,12 @@ function Card(props) {
 
   const {card} = props
 
+
+
+  const handleDeleteCard = () => {
+    
+  }
+
   return (
     <div className="card-item">
        {card.cover &&
@@ -15,8 +21,10 @@ function Card(props) {
          onMouseDown={e => e.preventDefault()}
         />
         }
-         {card.title}
+         <span>{card.title}</span>
+         {/* <i onClick = {handleDeleteCard} className = "fa fa-trash icon" /> */}
     </div >
+    
   )
 }
 

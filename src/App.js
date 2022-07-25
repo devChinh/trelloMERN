@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="trello-container">
       <AppBar />
-      <BoardBar />
+      {/* <BoardBar /> */}
       <BoardContent />
     </div>
   );
